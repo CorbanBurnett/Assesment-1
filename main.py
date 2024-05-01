@@ -17,3 +17,16 @@ class PizzaOrderingSystem:
     "3500HP GTR R35": 13.50,
     "ScatPack Hellcat": 13.50,
   }
+  def __init__(self):
+   self.order = {}
+
+      def display_menu(self):
+          print("Burnt Pizza Menu:")
+          for pizza, price in self.menu.items():
+              print(f"{pizza}: ${price:.2f}")
+
+      def take_order(self):
+          while True:
+            pizza = input("Enter the pizza you'd like to order (or 'quit' to finish ordering): 
+            ")
+              if pizza.lower() == 'quit':
