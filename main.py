@@ -2,31 +2,49 @@
 pizzas for the pizza resturant called "Burnt"'''
 class PizzaOrderingSystem:
   MENU = {
-    "Peperoni": 8.50,
-    "Cheesy Garlic": 8.50,
-    "Ham and Cheese": 8.50,
-    "Beef and Onion": 8.50,
-    "Hawaiian": 8.50,
-    "Bacon & Aioli": 8.50,
-    "Classic Veggie": 8.50,
-    "Greasy Grove": 13.50,
-    "Burnt Meaty Meatlovers": 13.50,
-    "Burnt Sausage": 13.50,
-    "Burnt Veggie": 13.50,
-    "Pleasent Plazza": 13.50,
-    "3500HP GTR R35": 13.50,
-    "ScatPack Hellcat": 13.50,
+      "Peperoni": 8.50,
+      "Cheesy Garlic": 8.50,
+      "Ham and Cheese": 8.50,
+      "Beef and Onion": 8.50,
+      "Hawaiian": 8.50,
+      "Bacon & Aioli": 8.50,
+      "Classic Veggie": 8.50,
+      "Greasy Grove": 13.50,
+      "Burnt Meaty Meatlovers": 13.50,
+      "Burnt Sausage": 13.50,
+      "Burnt Veggie": 13.50,
+      "Pleasent Plazza": 13.50,
+      "3500HP GTR R35": 13.50,
+      "ScatPack Hellcat": 13.50,
   }
   def __init__(self):
-   self.order = {}
+      self.order = {}
+  def display_menu(self):
+      print("Burnt Pizza Menu:")
+      for pizza, price in self.MENU.items():
+          print(f"{pizza}: ${price:.2f}")
+  def take_order(self):
+      while True:
+          pizza = input("Enter the pizza you'd like to order (or 'quit' to finish ordering): ")
+          if pizza.lower() == 'quit': 
+              break
+          elif pizza in self.MENU:
+              quantity = int(input("How many would you like to order? "))
+              if pizza in self.order:
+                  self.order[pizza] += quantity
+              else:
+                  self.order[pizza] = quantity
+          else:
+              print("Sorry, we don't have that pizza on the menu.")
 
-      def display_menu(self):
-          print("Burnt Pizza Menu:")
-          for pizza, price in self.menu.items():
-              print(f"{pizza}: ${price:.2f}")
+      def calculate_total(self):
+        total = 0
+        for pizza, quantity in self.order.items():
+            total += self.MENU[pizza] * quantity
+        return total
 
-      def take_order(self):
-          while True:
-            pizza = input("Enter the pizza you'd like to order (or 'quit' to finish ordering): 
-            ")
-              if pizza.lower() == 'quit':
+      def display_order(self):
+          print("Your Order:")
+          for pizza, quantity in self.order.items():
+              print(f"{pizza}: {quantity} x ${self.MENU[pizza]:.2f} = ${self.MENU[pizza]*quantity:.2f}")
+          print(f"Total: ${self.calculate_total():.2f}")
