@@ -48,3 +48,25 @@ class PizzaOrderingSystem:
           for pizza, quantity in self.order.items():
               print(f"{pizza}: {quantity} x ${self.MENU[pizza]:.2f} = ${self.MENU[pizza]*quantity:.2f}")
           print(f"Total: ${self.calculate_total():.2f}")
+        def main():
+            order = PizzaOrder()
+            print("Welcome to Crusty Pizza!")
+            while True:
+                print("\n1. Display Menu")
+                print("2. Take Order")
+                print("3. Display Order")
+                print("4. Quit")
+                choice = input("What would you like to do? ")
+                if choice == '1':
+                    order.display_menu()
+                elif choice == '2':
+                    order.take_order()
+                elif choice == '3':
+                    order.display_order()
+                elif choice == '4':
+                    break
+                else:
+                    print("Invalid choice. Please try again.")
+
+        if __name__ == "__main__":
+            main()
